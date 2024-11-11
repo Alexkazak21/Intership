@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <bitset>
 
 using namespace std;
 
@@ -7,21 +8,23 @@ bool IsRotation(string str);
 
 int main()
 {
-    string searchStr = "";
-    bool isClear;
+    int searchStr = 0;
 
-    cout << "Insert your binary number for check." << endl;
-    cout << "Your binari is: ";
+    cout << "Insert your decimal number for check." << endl;
+    cout << "Your decimal is: ";
 
     cin >> searchStr;
 
-    if (searchStr.length() < 2)
+    string binary = bitset<8>(searchStr).to_string();
+    binary.erase(0, binary.find_first_not_of('0'));
+
+    if (binary.length() < 2)
     {
         cout << "Number must be longer then 1 digit";
         return 1;
     }
 
-    cout << (IsRotation(searchStr) ? "1 and 0 is rotate" : "1 and 0 isn`t rotate");
+    cout << (IsRotation(binary) ? "1 and 0 is rotate" : "1 and 0 isn`t rotate");
 
     return 0;
 }
