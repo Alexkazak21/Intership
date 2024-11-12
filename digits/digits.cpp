@@ -7,7 +7,7 @@ using namespace std;
 
 void printDigits(int n)
 {
-    cout << "Цифры числа " << n << " по отдельности:" << endl;
+    cout << "Digits of number " << n << " separated:" << endl;
     while (n > 0)
     {
         int digit = n % 10;
@@ -24,7 +24,7 @@ int sumOfDigits(int n)
         sum += n % 10;
         n /= 10;
     }
-    cout << "Сумма цифр числа: " << sum << endl;
+    cout << "Sum of digits: " << sum << endl;
     return sum;
 }
 
@@ -36,7 +36,7 @@ int productOfDigits(int n)
         product *= n % 10;
         n /= 10;
     }
-    cout << "Произведение цифр числа: " << product << endl;
+    cout << "multiply og digits: " << product << endl;
     return product;
 }
 
@@ -55,8 +55,8 @@ bool isIncreasingSequence(int n)
         previousDigit = currentDigit;
         n /= 10;
     }
-    cout << (isIncreasing ? "Число является возрастающей последовательностью цифр."
-                          : "Число не является возрастающей последовательностью цифр.")
+    cout << (isIncreasing ? "Numder is growing sequence of digits."
+                          : "Numder isn`t growing sequence of digits.")
          << endl;
     return isIncreasing;
 }
@@ -75,9 +75,9 @@ void printMinMidMaxDigit(int n)
     int maxDigit = digits.back();
     int midDigit = digits[digits.size() / 2]; // средняя цифра в отсортированном массиве
 
-    cout << "Минимальная цифра: " << minDigit << endl;
-    cout << "Средняя цифра: " << midDigit << endl;
-    cout << "Максимальная цифра: " << maxDigit << endl;
+    cout << "Min digit: " << minDigit << endl;
+    cout << "Midle digit: " << midDigit << endl;
+    cout << "Max digit: " << maxDigit << endl;
 }
 
 bool hasConsecutiveDuplicates(int n)
@@ -95,8 +95,8 @@ bool hasConsecutiveDuplicates(int n)
         previousDigit = currentDigit;
         n /= 10;
     }
-    cout << (hasDuplicates ? "Число содержит две одинаковые цифры подряд."
-                           : "Число не содержит две одинаковые цифры подряд.")
+    cout << (hasDuplicates ? "Number contain 2 common digits."
+                           : "Number doesn`t contain 2 common digits.")
          << endl;
     return hasDuplicates;
 }
@@ -104,7 +104,7 @@ bool hasConsecutiveDuplicates(int n)
 int main()
 {
     int n;
-    cout << "Введите натуральное число: ";
+    cout << "Insert natural number: ";
     cin >> n;
 
     printDigits(n);              // Функция 1
