@@ -4,43 +4,43 @@
 
 using namespace std;
 
-bool IsRotation(string str);
+bool IsRotation(int number);
+double DecimalToBinary(int decimalNumber);
 
 int main()
 {
-    int searchStr = 0;
+    int searchInt = 0;
 
     cout << "Insert your decimal number for check." << endl;
     cout << "Your decimal is: ";
 
-    cin >> searchStr;
+    cin >> searchInt;
 
-    string binary = bitset<8>(searchStr).to_string();
-    binary.erase(0, binary.find_first_not_of('0'));
-
-    if (binary.length() < 2)
-    {
-        cout << "Number must be longer then 1 digit";
-        return 1;
-    }
-
-    cout << (IsRotation(binary) ? "1 and 0 is rotate" : "1 and 0 isn`t rotate");
+    cout << "Your number in decimal is: " << DecimalToBinary(searchInt) << endl;
+    cout << (IsRotation(searchInt) ? "1 and 0 is rotate" : "1 and 0 isn`t rotate");
 
     return 0;
 }
 
-bool IsRotation(string str)
+double DecimalToBinary(int decimalNumber)
 {
-    for (int i = 0; i < str.length() - 1; i++)
-    {
-        char currentChar = str[i];
-        char nextChar = str[i + 1];
+    double binaryNumber = 0.0;
+    double placeValue = 1.0;
 
-        if (currentChar == nextChar)
-        {
-            return false;
-        }
+    while (decimalNumber > 0)
+    {
+        double remainder = decimalNumber % 2;
+        binaryNumber += remainder * placeValue;
+        decimalNumber /= 2.0;
+        placeValue *= 10.0;
     }
 
-    return true;
+    return binaryNumber;
+}
+
+bool IsRotation(int number)
+{
+    int xorResult = number ^ (number >> 1);
+
+    return (xorResult & (xorResult + 1)) == 0;
 }

@@ -9,6 +9,7 @@ int Reverse(int number);
 int main()
 {
     int number = 0;
+
     cout << "Insert your number" << endl;
     cin >> number;
 
