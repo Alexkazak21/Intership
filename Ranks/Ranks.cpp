@@ -31,12 +31,13 @@ int main()
 
 int Reverse(int number)
 {
+    const int DECIMAL_BASE = 10;
     int m = 0;
 
     while (number)
     {
-        m = m * 10 + number % 10;
-        number /= 10;
+        m = m * DECIMAL_BASE + number % DECIMAL_BASE;
+        number /= DECIMAL_BASE;
     }
 
     return m;
