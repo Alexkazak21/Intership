@@ -52,23 +52,23 @@ bool hasClearPath(int cube[SIZE][SIZE][SIZE])
             return true;
     }
 
-        /*
-    // Checking the spatial diagonals
-    bool diag1 = true, diag2 = true, diag3 = true, diag4 = true;
-    for (int i = 0; i < SIZE; i++)
-    {
-        if (cube[i][i][i] == 0)
-            diag1 = false; // Main diagonal
-        if (cube[i][i][SIZE - i - 1] == 0)
-            diag2 = false; // inverse diagonal
-        if (cube[i][SIZE - i - 1][i] == 0)
-            diag3 = false; // Mixed diagonal
-        if (cube[SIZE - i - 1][i][i] == 0)
-            diag4 = false; // Another variant of mixed diagonal
-    }
-    if (diag1 || diag2 || diag3 || diag4)
-        return true;
-    */
+    /*
+// Checking the spatial diagonals
+bool diag1 = true, diag2 = true, diag3 = true, diag4 = true;
+for (int i = 0; i < SIZE; i++)
+{
+    if (cube[i][i][i] == 0)
+        diag1 = false; // Main diagonal
+    if (cube[i][i][SIZE - i - 1] == 0)
+        diag2 = false; // inverse diagonal
+    if (cube[i][SIZE - i - 1][i] == 0)
+        diag3 = false; // Mixed diagonal
+    if (cube[SIZE - i - 1][i][i] == 0)
+        diag4 = false; // Another variant of mixed diagonal
+}
+if (diag1 || diag2 || diag3 || diag4)
+    return true;
+*/
 
     return false; // If the are no gap
 }
@@ -79,9 +79,9 @@ int main()
     // 1 is clear
     // 0 is black
     int cube[SIZE][SIZE][SIZE] = {
-        {{1, 0, 1}, {1, 1, 1}, {1, 1, 0}},
-        {{1, 1, 1}, {0, 1, 0}, {1, 1, 1}},
-        {{1, 1, 1}, {1, 0, 1}, {1, 1, 1}}};
+        {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}},
+        {{0, 1, 0}, {0, 0, 0}, {0, 1, 0}},
+        {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}}};
 
     if (hasClearPath(cube))
     {

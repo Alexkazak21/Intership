@@ -3,12 +3,12 @@
 
 using namespace std;
 
-vector<int> FindInvisiablePoints(int profile[])
+vector<int> FindInvisiablePoints(int profile[], int size)
 {
     double maxAngele = -1e9;
     vector<int> invisPoints = {};
 
-    for (int i = 1; i < sizeof(profile); i++)
+    for (int i = 1; i < size; i++)
     {
         double angle = (profile[i] - profile[0]) / (i * 1.0);
         if (angle >= maxAngele)
@@ -30,9 +30,10 @@ int main()
     int profile[] = {10, 8, 12, 15, 7, 16, 14};
     vector<int> invisiblePoints = {};
 
-    invisiblePoints = FindInvisiablePoints(profile);
+    size_t size = sizeof(profile) / sizeof(profile[0]);
+    invisiblePoints = FindInvisiablePoints(profile, size);
 
-    cout << "Invisiable points: ";
+    // cout << "Invisiable points: ";
     for (int index : invisiblePoints)
     {
         cout << index << " ";

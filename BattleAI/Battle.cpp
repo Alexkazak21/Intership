@@ -20,8 +20,9 @@ class TicTacToe
     std::string player1 = "";
     std::string player2 = "";
     int carrentPlayer = 1;
-    std::vector<int> listChooses = {};
-    std::vector<std::vector<int>> minimax = {};
+    vector<int> listChooses = {};
+    vector<vector<int>> minimax = {};
+    char carrentMarker = 0;
 
     // Draw template of the board
     void PrintTemplate()
@@ -50,12 +51,13 @@ class TicTacToe
         cout << endl
              << "==========\n";
     }
+
     // Player selects which to play X or O
     char PlayerSelectRole()
     {
         char input = '0';
 
-        cout << "Insert First player symbol 'X' or 'O': ";
+        cout << "Insert your player symbol 'X' or 'O': ";
         cin >> input;
 
         // Check, that input is 'X' or 'O'
@@ -74,8 +76,6 @@ class TicTacToe
 
         return input;
     }
-
-    char carrentMarker = 0;
 
     // fill the board by spaces
     char **FillBoard(char **board)
@@ -337,7 +337,7 @@ class TicTacToe
         for (int i = 1; i < listChooses.size(); i++)
         {
             int key = listChooses.at(i);
-            int min;
+            int min = 0;
             int reduceGood = 0;
             int reduceBad = 0;
 
@@ -423,17 +423,17 @@ class TicTacToe
             // decision
             vector<int> randomSlot = {1, 2, 3, 4, 5, 6, 7, 8, 9};
             srand(time(NULL));
-            return (randomSlot.at((rand() % ((randomSlot.size() - 1) + 1))));
+            return (randomSlot.at(rand() % randomSlot.size()));
         }
 
         // calculate all utilities of availables slot
         minimax.clear();
         for (int i = 0; i < listChooses.size(); i++)
         {
-            char **newBoard = new char *[3];
-            for (int i = 0; i < 3; i++)
+            char **newBoard = new char *[SIZE];
+            for (int i = 0; i < SIZE; i++)
             {
-                newBoard[i] = new char[3];
+                newBoard[i] = new char[SIZE];
             }
             newBoard = GetAllboardcases(board);
             AllUtilities(listChooses.at(i), listChooses.at(i), newBoard, 1, carrentMarker, carrentPlayer);
@@ -448,7 +448,18 @@ public:
     {
         player1 = _player1;
         player2 = _player2;
+        int turn = 0;
         carrentMarker = PlayerSelectRole();
+
+        if (player1 == "AI" && player2 == "humain")
+        {
+            carrentMarker = (carrentMarker == Xchar) ? Ochar : Xchar;
+            turn = 0;
+        }
+        else
+        {
+            turn = 1;
+        }
 
         // create the board
         board = new char *[SIZE];
@@ -460,11 +471,7 @@ public:
         // fill the board
         board = FillBoard(board);
 
-        int slot;
-
-        // choose who will start the game randomly
-        srand(time(NULL));
-        int turn = 0;
+        int slot = 0;
 
         for (int i = 0; i < SIZE * SIZE; i++)
         {
@@ -481,10 +488,10 @@ public:
             else if (player1 == "AI" && player2 == "AI")
             {
                 std::cout << "\n\n";
-                char **newBoard = new char *[3];
-                for (int i = 0; i < 3; i++)
+                char **newBoard = new char *[SIZE];
+                for (int i = 0; i < SIZE; i++)
                 {
-                    newBoard[i] = new char[3];
+                    newBoard[i] = new char[SIZE];
                 }
                 newBoard = GetAllboardcases(board);
                 slot = ComputerPerfectSlot(newBoard, listChooses);
@@ -520,7 +527,8 @@ public:
             // check if the slot that the player choose is available or not before mark it
             if (!CheckCell(slot, board))
             {
-                std::cout << "The slot " << slot << " isn't not vailable, tyr another one!\n";
+                std::cout << "The slot " << slot << " isn't not vailable, try another one!\n";
+                system("pause");
                 i--;
                 continue;
             }
@@ -530,7 +538,9 @@ public:
             if (Winner(board, carrentPlayer))
             {
                 std::cout << carrentMarker << " has won!\n\n\n";
+                DrawBoard(board);
                 board = FillBoard(board);
+
                 return;
             }
 
@@ -541,7 +551,7 @@ public:
             carrentPlayer = SwapPlayeer(carrentPlayer);
         }
 
-        std::cout << "This is a tie game! :/\n\n\n";
+        std::cout << "\nThis is a tie game! :/\n\n\n";
         board = FillBoard(board);
     }
 
@@ -607,7 +617,9 @@ int main(int argc, char *argv[])
         t.play("humain", "AI");
         t.play("AI", "AI");
         t.play("AI", "humain");
-    */
+
     StartUpModeSelect(t);
+    */
+    t.play("humain", "AI");
     system("pause");
 }
