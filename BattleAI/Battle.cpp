@@ -52,31 +52,6 @@ class TicTacToe
              << "==========\n";
     }
 
-    // Player selects which to play X or O
-    char PlayerSelectRole()
-    {
-        char input = '0';
-
-        cout << "Insert your player symbol 'X' or 'O': ";
-        cin >> input;
-
-        // Check, that input is 'X' or 'O'
-        while (input != 'X' && input != 'O')
-        {
-            cout << "Wrong input. Please, insert 'X' or 'O': ";
-            cin >> input;
-
-            // If Error, clean the input
-            if (cin.fail())
-            {
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            }
-        }
-
-        return input;
-    }
-
     // fill the board by spaces
     char **FillBoard(char **board)
     {
@@ -444,12 +419,21 @@ class TicTacToe
     }
 
 public:
-    void play(std::string _player1, std::string _player2)
+    void play(char playerChoise)
     {
-        player1 = _player1;
-        player2 = _player2;
+        if (playerChoise == Xchar)
+        {
+            player1 = "humain";
+            player2 = "AI";
+        }
+        else
+        {
+            player1 = "AI";
+            player2 = "humain";
+        }
+
         int turn = 0;
-        carrentMarker = PlayerSelectRole();
+        carrentMarker = playerChoise;
 
         if (player1 == "AI" && player2 == "humain")
         {
@@ -544,7 +528,7 @@ public:
                 return;
             }
 
-            DrawBoard(board);
+            // DrawBoard(board);
 
             // swap to the player who will play in the next turn
             carrentMarker = SwapMarker(carrentMarker);
@@ -582,16 +566,16 @@ void StartUpModeSelect(TicTacToe t)
         switch (choice)
         {
         case 1:
-            t.play("humain", "humain");
+            t.play('X');
             break;
         case 2:
-            t.play("humain", "AI");
+            t.play('X');
             break;
         case 3:
-            t.play("AI", "AI");
+            t.play('X');
             break;
         case 4:
-            t.play("AI", "humain");
+            t.play('X');
             break;
         default:
         {
@@ -602,6 +586,31 @@ void StartUpModeSelect(TicTacToe t)
         break;
         }
     }
+}
+
+// Player selects which to play X or O
+char SelectUserRole()
+{
+    char input = '0';
+
+    cout << "Insert your player symbol 'X' or 'O': ";
+    cin >> input;
+
+    // Check, that input is 'X' or 'O'
+    while (input != 'X' && input != 'O')
+    {
+        cout << "Wrong input. Please, insert 'X' or 'O': ";
+        cin >> input;
+
+        // If Error, clean the input
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    }
+
+    return input;
 }
 
 int main(int argc, char *argv[])
@@ -620,6 +629,6 @@ int main(int argc, char *argv[])
 
     StartUpModeSelect(t);
     */
-    t.play("humain", "AI");
+    t.play(SelectUserRole());
     system("pause");
 }

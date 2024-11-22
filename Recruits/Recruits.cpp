@@ -2,19 +2,22 @@
 
 using namespace std;
 
-void SoldiersTurnsFinished(char soldiers[], int size)
+void TurnSoldiers(char soldiers[])
 {
+    size_t size = sizeof(soldiers) / sizeof(soldiers[0]);
+
     bool swap = true;
     do
     {
         swap = false;
-        for (int i = 0; i < size; i++)
+        for (int i = 0; i < size - 1; i++)
         {
-            if (i != size - 1 && soldiers[i] == '>' && soldiers[i + 1] == '<')
+            if (soldiers[i] == '>' && soldiers[i + 1] == '<')
             {
                 char tmp = soldiers[i];
                 soldiers[i] = soldiers[i + 1];
                 soldiers[i + 1] = tmp;
+                i++;
                 swap = true;
             }
         }
@@ -31,8 +34,7 @@ int main()
 {
     char soldiers[] = {'<', '>', '<', '>', '<'};
 
-    size_t size = sizeof(soldiers) / sizeof(soldiers[0]);
-    SoldiersTurnsFinished(soldiers, size);
+    TurnSoldiers(soldiers);
 
     cout << "let`s go!";
 
