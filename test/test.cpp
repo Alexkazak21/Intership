@@ -1,39 +1,43 @@
-//  записать условие как говорит интервьюер
-//  разработка функции елочка f(3)
-
+//  в целом числе распечатать среднюю и уникальную цифру
+#include <math.h>
 #include <iostream>
 
 using namespace std;
 
 int main()
 {
-    int ammount = 0;
-    const char ITEM = '*';
+    int number = 0;
+    int maxDigit = -1;
+    int minDigit = 9;
 
-    cout << "Insert height ";
-    cin >> ammount;
+    int counter = 0;
+    int totalSum = 0;
 
-    for (int i = 1; i <= ammount; i++)
+    cin >> number;
+
+    while (number / 10 > 0)
     {
-        int j = i;
-        while (j > 0)
+        counter++;
+        int curDigit = number % 10;
+        if (curDigit > maxDigit)
         {
-            cout << ITEM;
-            j--;
+            maxDigit = curDigit;
         }
-        cout << endl;
+        if (curDigit < minDigit)
+        {
+            minDigit = curDigit;
+        }
+
+        totalSum += number % 10;
+        number /= 10;
     }
 
-    for (int i = ammount - 1; i > 0; i--)
+    if ((totalSum / counter) - minDigit > maxDigit - (totalSum / counter))
     {
-        int j = i;
-        while (j > 0)
-        {
-            cout << ITEM;
-            j--;
-        }
-        cout << endl;
+        cout << minDigit;
     }
 
+    cout << totalSum / counter << endl;
+    cout << maxDigit << endl;
     return 0;
 }

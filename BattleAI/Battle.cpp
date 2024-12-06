@@ -536,6 +536,7 @@ public:
         }
 
         std::cout << "\nThis is a tie game! :/\n\n\n";
+        DrawBoard(board);
         board = FillBoard(board);
     }
 
@@ -629,6 +630,9 @@ int main(int argc, char *argv[])
 
     StartUpModeSelect(t);
     */
-    t.play(SelectUserRole());
-    system("pause");
+    while (true)
+    {
+        t.play(SelectUserRole());
+        system("pause");
+    }
 }
