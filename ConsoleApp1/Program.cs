@@ -58,7 +58,7 @@ public class Program
             var doubleStr = Console.ReadLine();
             var byteStr = Console.ReadLine();
             var charStr = Console.ReadLine();
-            @double = double.Parse(doubleStr,CultureInfo.InvariantCulture);
+            @double = double.Parse(doubleStr, CultureInfo.InvariantCulture);
 
             checked
             {
@@ -100,8 +100,8 @@ public class Program
         byte second = 0;
         byte sumResult = 0;
 
-        byte.TryParse( Console.ReadLine(), out first);
-        byte.TryParse( Console.ReadLine(), out second);
+        byte.TryParse(Console.ReadLine(), out first);
+        byte.TryParse(Console.ReadLine(), out second);
         
         checked
         {

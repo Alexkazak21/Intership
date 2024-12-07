@@ -9,16 +9,22 @@ namespace Task16
         {   
             var stopwatch = new Stopwatch();
             stopwatch.Start();
+
             for (int i = 0; i < 1_000_000_000; i++)
             { }
+
             stopwatch.Stop();
             Console.WriteLine(stopwatch.Elapsed.ToString());
 
+
+            //Loop with creating an object
             stopwatch.Restart();
+
             for (int i = 0; i < 1_000_000_000; i++)
             {
                 object obj = i;
             }
+
             stopwatch.Stop();
             Console.WriteLine(stopwatch.Elapsed.ToString());
         }      

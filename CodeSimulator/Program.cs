@@ -48,12 +48,12 @@
 
             for (int i = 1; i <= n; i++)
             {
-                if(n % i == 0)
+                if (n % i == 0)
                 {
                     deviders.Add(i);
                 }
 
-                if(deviders.Count > 2)
+                if (deviders.Count > 2)
                 {
                     return false;
                 }
@@ -61,11 +61,12 @@
 
             return true;
         }
+
         public static int LineralSearch(int[] searchArray, int key)
         {
             for (int i = 0; i < searchArray.Length; i++)
             {
-                if(searchArray[i] == key)
+                if (searchArray[i] == key)
                 {
                     return i;
                 }    
@@ -73,13 +74,14 @@
 
             return -1;
         }
+
         public static void BubbleSort(int[] sortArray)
         {
             for (int i = 0; i < sortArray.Length; i++)
             {
                 for (int j = 0; j < sortArray.Length - 1; j++)
                 {
-                    if(sortArray[j] > sortArray[j + 1])
+                    if (sortArray[j] > sortArray[j + 1])
                     {
                         sortArray[j] = sortArray[j] ^ sortArray[j + 1];
                         sortArray[j + 1] = sortArray[j] ^ sortArray[j + 1];
@@ -88,10 +90,12 @@
                 }
             }
         }
+
         public static long Fibonacci(int n)
         {
             return (n < 2) ? n : Fibonacci(n - 1) + Fibonacci(n - 2);
         }
+
         public static void Swap(int first, int second)
         {
             first = first + second;
@@ -102,22 +106,25 @@
             //second = first ^ second;
             //first = first ^ second;
         }
+
         public static void MultipleTable()
         {
             const int BASE = 10;
-            for(int i = 1;i < BASE;i++)
+            for (int i = 1; i < BASE; i++)
             {
-                for(int j = 1;j < BASE;j++)
+                for (int j = 1; j < BASE; j++)
                 {
                     Console.Write($"{i * j,3}");
                 }
                 Console.WriteLine("\n");
             }
         }
+
         public static bool IsUniqueChar(string searchString)
         {
             return searchString.GroupBy(x => x).Any(group => group.Count() == 1) ? true : false;
         }
+
         public static bool Equals(string a, string b)
         {
             if (a.Length != b.Length)
@@ -128,7 +135,7 @@
             {
                 for (int i = 0; i < a.Length; i++)
                 {
-                    if(a[i] != b[i])
+                    if (a[i] != b[i])
                     {
                         return false;
                     }

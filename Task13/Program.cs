@@ -98,8 +98,8 @@ internal class Program
         else if (secondStr.Contains(REPLACE))
         {
             var indexesArray = secondStr.IndexOfAll('"');
-            var oldVal = secondStr[(indexesArray[0]+ 1)..indexesArray[1]];
-            var newVal = secondStr[(indexesArray[2] + 1)..indexesArray[3]];
+            var oldVal = secondStr[(indexesArray[0]+ 1) .. indexesArray[1]];
+            var newVal = secondStr[(indexesArray[2] + 1) .. indexesArray[3]];
 
             Console.WriteLine(wokringString.Replace(oldVal, newVal ).ToArray());            
         }
@@ -108,16 +108,17 @@ internal class Program
             Console.WriteLine("Wrong input.");
         }
     }
+
     public static void TextProcessorCaseC(string text = "")
     {
         text = ProcessUserInput(text);
         Console.WriteLine(text.DeleteAllSelectedChars(' '));
     }
+
     public static void TextProcessorCaseD(string text)
     {
         Console.WriteLine(text.EvenToUpper());
     }
-
     
     public static string ProcessUserInput(string str)
     {
@@ -140,6 +141,7 @@ internal class Program
         }
         
     }
+
     public static string GetNormalString(string str, bool workWithSymbol = false)
     {
         if(workWithSymbol)
@@ -157,12 +159,13 @@ public static class String
     {
         return source.Select((c, idx) => c == target ? idx : -1).Where(idx => idx != -1).ToArray();
     }
+
     public static string DeleteAllSelectedChars(this string source, char target)
     {
         var sb = new StringBuilder();
         for (int i = 0; i < source.Length; i++)
         {
-            if(source[i] != target)
+            if (source[i] != target)
             {
                 sb.Append(source[i]);
             }
@@ -170,6 +173,7 @@ public static class String
 
         return sb.ToString();
     }
+
     public static string EvenToUpper(this string source)
     {
         var sb = new StringBuilder();

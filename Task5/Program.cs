@@ -12,7 +12,7 @@ namespace Task5
             firstNumber = int.Parse(Console.ReadLine());
             secondNumber = int.Parse(Console.ReadLine());
 
-            if(firstNumber > secondNumber)
+            if (firstNumber > secondNumber)
             {
                 firstNumber += secondNumber;
                 secondNumber = firstNumber - secondNumber;

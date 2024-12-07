@@ -38,13 +38,16 @@ public  class Program
             }
         }
     }
+
     public static double GetAverage(Child[]? children)
     {
-        return double.Round(children.Average(x => x.average),2);
+        return double.Round(children.Average(x => x.average), 2);
     }
+
     public static void PrintBelowAverage(Child[]? children, double average)
     {
         var belowAverage = children.Where(x => x.average < average).ToArray();
+
         foreach (var child in belowAverage)
         {
             Console.WriteLine(child.ToString());

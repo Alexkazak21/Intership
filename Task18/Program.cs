@@ -28,11 +28,12 @@ internal class Program
             var number = int.Parse(Console.ReadLine());
             var type = Console.ReadLine();
 
-            airport[i] = new Belavia(dest,number,type);
+            airport[i] = new Belavia(dest, number, type);
         }
 
         return airport;
     }
+
     public static void DisplayFlights(Belavia[] airports, string type)
     {
         var selectedFlights = airports.Where(x => x.type == type).ToList();

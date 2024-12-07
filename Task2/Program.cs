@@ -11,6 +11,7 @@ public class Program
     public static void StartDecisisionAI()
     {
         const string POSSITIVE = "Yes";
+
         string firstAnswer = string.Empty;
         string secondAnswer = string.Empty;
         string thirdAnswer = string.Empty;

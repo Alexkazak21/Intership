@@ -8,13 +8,14 @@ internal class Program
         var arraySIZE = 5;
         var sourceArray = new string?[arraySIZE];
 
-        sourceArray = GetUserInput(arraySIZE,"Monday", "Tuesday", "", "Thursday",null, "Friday");
+        sourceArray = GetUserInput(arraySIZE, "Monday", "Tuesday", "", "Thursday", null, "Friday");
 
         for (int i = 0; i < sourceArray.Length; i++)
         {
             Console.WriteLine(sourceArray[i]);
         }
     }
+
     public static string?[] GetUserInput(int size, params string?[] args)
     {
         var targetArray = new string?[size];
@@ -28,7 +29,7 @@ internal class Program
         }
         else
         {
-            for(int i = 0;i < size; i++)
+            for (int i = 0; i < size; i++)
             {
                 var @string = Console.ReadLine();             
 

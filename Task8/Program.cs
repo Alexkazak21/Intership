@@ -10,26 +10,27 @@ internal class Program
         var inputString = string.Empty;
 
         inputString = "burgers:3 lattes:4 ice creams:2 2";
-        var order1 = UserInput(inputString);
+        var order1 = ParseUserInput(inputString);
         PrintResult(order1);
 
         inputString = "lattes:1 burgers:1 1";
-        var order2 = UserInput(inputString);
+        var order2 = ParseUserInput(inputString);
         PrintResult(order2);
 
         inputString = "burgers:5 ice creams:5 lattes:5 5";
-        var order3 = UserInput(inputString);
+        var order3 = ParseUserInput(inputString);
         PrintResult(order3);
 
         inputString = "ice creams:4 burgers:2 lattes:1 tableSet:2";
-        var order4 = UserInput(inputString);
+        var order4 = ParseUserInput(inputString);
         PrintResult(order4);
 
         inputString = "2 2 2";
-        var order5 = UserInput(inputString);
+        var order5 = ParseUserInput(inputString);
         PrintResult(order5);
     }
-    public static Order UserInput(string userString = null)
+
+    public static Order ParseUserInput(string userString = null)
     {
         var userInput = new string[] { };   
         if (userString == null)
@@ -76,6 +77,7 @@ internal class Program
 
         return order;
     }
+
     public static int GetAmmount(string input)
     {
         int startIndex = input.IndexOf(':') != -1 ? input.IndexOf(':') : 0;
@@ -83,7 +85,7 @@ internal class Program
         {
             return int.Parse(input); //result;
         }
-        else if (int.TryParse(input[(startIndex + 1)..], out int result))
+        else if (int.TryParse(input[(startIndex + 1) ..], out int result))
         {
             return result;
         }
@@ -92,6 +94,7 @@ internal class Program
             return 0;
         }
     }
+
     public static void PrintResult(Order order)
     {
         var result = new StringBuilder();
@@ -115,7 +118,6 @@ internal class Program
         result.Append($"Additional: {order.TableSet} table set.");
 
         Console.WriteLine(result);
-
     }
 }
 

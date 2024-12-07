@@ -9,23 +9,26 @@
 
         public static void FindJoseph()
         {
-            if(int.TryParse(Console.ReadLine(), out int totalNumberOfWarriors))
+            if (int.TryParse(Console.ReadLine(), out int totalNumberOfWarriors))
             {                
                 int res = FindForJosephToSurvive(totalNumberOfWarriors);
                 Console.WriteLine(res);
             }
         }
+
         public static int FindForJosephToSurvive(int n)
         {
             int k = 1; 
             while (true)
             {
-                if (SimulateJosephusWithArray(n, k) == 1) 
+                if (SimulateJosephusWithArray(n, k) == 1)
+                {
                     return k;
+                }
+                    
                 k++; 
             }
         }
-
         
         public static int SimulateJosephusWithArray(int n, int k)
         {

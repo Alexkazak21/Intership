@@ -15,6 +15,7 @@ namespace Task9
         public static void PrintFullName(string firstName = "", string middleName = "", string lastName = "")
         {
             StringBuilder result = new();
+
             if (firstName != "")
             {
                 result.Append(firstName + " ");
@@ -25,7 +26,7 @@ namespace Task9
                 result.Append(middleName + " ");
             }
 
-            if(lastName != "")
+            if (lastName != "")
             {
                 result.Append(lastName);
             }

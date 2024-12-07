@@ -15,7 +15,7 @@ internal class Program
         sourceArray = GetUserInput(4, "18", "18", "19", "20");
         Console.WriteLine(CountAverage(sourceArray));
 
-        sourceArray = GetUserInput(6, "24", "23", string.Empty, "20",string.Empty, "20");
+        sourceArray = GetUserInput(6, "24", "23", string.Empty, "20", string.Empty, "20");
         Console.WriteLine(CountAverage(sourceArray));
 
         sourceArray = GetUserInput(0);
@@ -45,13 +45,14 @@ internal class Program
 
         return targetArray;
     }
+
     public static object CountAverage(int?[] sourceArray)
     {
         var counter = 0.0;
         var ageSum = 0.0;
         for (int i = 0; i < sourceArray.Length; i++)
         {
-            if(sourceArray[i] != null)
+            if (sourceArray[i] != null)
             {
                 ageSum += sourceArray[i] ??= 0;
                 counter++;
