@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Runtime.CompilerServices;
+using System.Text;
 
 namespace Task9
 {
@@ -6,7 +7,7 @@ namespace Task9
     {
         static void Main(string[] args)
         {            
-            PrintFullName("Alex");
+            PrintFullName(firstName: "Alex");
             PrintFullName("Fred", "McGregor");
             PrintFullName("Vasiliy", "Ptrovich", "Ivanov");
             PrintFullName("Jeffrey", "Richter");
@@ -16,22 +17,25 @@ namespace Task9
         {
             StringBuilder result = new();
 
-            if (firstName != "")
-            {
-                result.Append(firstName + " ");
-            }
+            result.AddString(firstName);
 
-            if (middleName != "")
-            {
-                result.Append(middleName + " ");
-            }
+            result.AddString(middleName);
 
-            if (lastName != "")
-            {
-                result.Append(lastName);
-            }
+            result.AddString(lastName);
 
             Console.WriteLine(result);
+        }
+    }
+
+    public static class SBExtention
+    {
+        public static void AddString(this StringBuilder builder, string text, string separator = " ")
+        {
+            if (!string.IsNullOrEmpty(text))
+            {
+                builder.Append(text);
+                builder.Append(separator);
+            }
         }
     }
 }

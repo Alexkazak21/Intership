@@ -10,6 +10,7 @@ namespace Task7
             mainArray = RemoveMaxMin(mainArray);
             Console.WriteLine($"{GetAverage(mainArray)}", CultureInfo.InvariantCulture);
         }
+
         public static int[] InitArray()
         {
             var initDigitArr = Console.ReadLine().Split(' ');

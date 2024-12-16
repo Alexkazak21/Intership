@@ -4,12 +4,17 @@
     {
         static void Main(string[] args)
         {
-            var t = Factorial(4);
+            var t1 = Factorial(1);
+            var t2 = Factorial(2);
+            var t3 = Factorial(3);
+            var t4 = Factorial(4);
+            var t5 = Factorial(5);
 
             var prime = IsPrime(7);
             var prime1 = IsPrime(6);
             var prime2 = IsPrime(11);
             var prime3 = IsPrime(9);
+            var prime4 = IsPrime(97);
 
             var someNumbers = new[] { 1, 2, 3, 4, 5, 6, 7 };
             var index = LineralSearch(someNumbers, 4);
@@ -20,6 +25,7 @@
             var fib2 = Fibonacci(2);
             var fib3 = Fibonacci(3);
             var fib4 = Fibonacci(4);
+            var fib6 = Fibonacci(6);
 
             Swap(3, 8);
 
@@ -32,28 +38,40 @@
 
         public static long Factorial(int n)
         {
-            if (n == 2)
-            {
-                return 1;
-            }
-            else
-            {
-                return n * Factorial(--n);
-            }
+            return n < 2 ? n : n * Factorial(--n);             
         }
 
-        public static bool IsPrime(int n)
-        {
-            List<int> deviders = new List<int>();
+        //public static bool IsPrime(int n)
+        //{                     
+        //    //  Усовершенствовать
+        //    List<int> deviders = new List<int>();
 
-            for (int i = 1; i <= n; i++)
+        //    for (int i = 1; i <= n; i++)
+        //    {
+        //        if (n % i == 0)
+        //        {
+        //            deviders.Add(i);
+        //        }
+
+        //        if (deviders.Count > 2)
+        //        {
+        //            return false;
+        //        }
+        //    }
+
+        //    return true;
+        //}
+
+        public static bool IsPrime(int number)
+        {            
+            if (number <= 1) return false; 
+            if (number <= 3) return true; 
+            
+            if (number % 2 == 0 || number % 3 == 0) return false;
+            
+            for (int i = 5; i * i <= number; i += 6)
             {
-                if (n % i == 0)
-                {
-                    deviders.Add(i);
-                }
-
-                if (deviders.Count > 2)
+                if (number % i == 0 || number % (i + 2) == 0)
                 {
                     return false;
                 }
@@ -79,7 +97,7 @@
         {
             for (int i = 0; i < sortArray.Length; i++)
             {
-                for (int j = 0; j < sortArray.Length - 1; j++)
+                for (int j = 0; j < sortArray.Length - 1 - i; j++)
                 {
                     if (sortArray[j] > sortArray[j + 1])
                     {
@@ -123,6 +141,28 @@
         public static bool IsUniqueChar(string searchString)
         {
             return searchString.GroupBy(x => x).Any(group => group.Count() == 1) ? true : false;
+
+            
+
+            int[] charCount = new int[26];
+
+            foreach (char c in searchString)
+            {
+                if (char.IsLetter(c))
+                {
+                    charCount[char.ToUpperInvariant(c)]++;
+                }
+            }
+
+            foreach (char c in searchString)
+            {
+                if (char.IsLetter(c) && charCount[char.ToUpperInvariant(c)] == 1)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public static bool Equals(string a, string b)
@@ -131,18 +171,16 @@
             {
                 return false;
             }
-            else
-            {
-                for (int i = 0; i < a.Length; i++)
-                {
-                    if (a[i] != b[i])
-                    {
-                        return false;
-                    }
-                }
 
-                return true;
+            for (int i = 0; i < a.Length; i++)
+            {
+                if (a[i] != b[i])
+                {
+                    return false;
+                }
             }
-        }
-    }
+
+            return true;
+        }        
+    }      
 }

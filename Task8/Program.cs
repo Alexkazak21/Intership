@@ -33,6 +33,7 @@ internal class Program
     public static Order ParseUserInput(string userString = null)
     {
         var userInput = new string[] { };   
+
         if (userString == null)
         {
             userInput = Console.ReadLine().Split(' ');
@@ -45,6 +46,7 @@ internal class Program
         userInput = userInput.Where(x => x != "ice").ToArray();
 
         Order order = new();
+
         for (int i = 0; i < userInput.Length; i++)
         {
             if (userInput[i].Contains("burger"))
