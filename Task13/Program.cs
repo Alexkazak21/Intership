@@ -4,6 +4,8 @@ namespace Task13;
 
 internal class Program
 {
+    private static char STOP_SYMBOL = '.';
+    private static char WHITE_SPACE = ' ';
     static void Main(string[] args)
     {
         // A cases
@@ -11,7 +13,8 @@ internal class Program
         TextProcessorCaseA("hello user user! how are are you?");
         TextProcessorCaseA("I like like tearn c#.");
         TextProcessorCaseA("my my favorite programmimg programmimg language is c#.");
-      //  TextProcessorCaseA();
+        TextProcessorCaseA("hello helloo hel");
+        //  TextProcessorCaseA();
 
         //B cases
         TextProcessorCaseB("Text: \"Hello, user! How are you?\"",
@@ -40,37 +43,42 @@ internal class Program
 
     public static void TextProcessorCaseA(string inputString = "")
     {
-        string input = "";
+        string input = string.Empty;
         StringBuilder sb = new StringBuilder();
 
         input = ProcessUserInput(inputString);        
 
-        var stringArray = input.Split(' ');
+        var stringArray = input.Split(WHITE_SPACE);
         for (int i = 0; i < stringArray.Length - 1; i++)
         {
             if (stringArray[i + 1].Length - stringArray[i].Length == 1 || stringArray[i].Equals(stringArray[i + 1]))
             {
-                if (!stringArray[i + 1].Contains(stringArray[i]))
+                if (stringArray[i + 1].Equals(stringArray[i + 1]) && !stringArray[i + 1].Contains(stringArray[i]) )
                 {
-                    sb.Append(stringArray[i] + " ");
+                    sb.Append(stringArray[i]);
+                    sb.Append(WHITE_SPACE);
                     if (i + 1 == stringArray.Length - 1)
                     {
-                        sb.Append(stringArray[i + 1] + " ");
+                        sb.Append(stringArray[i + 1]);
+                        sb.Append(WHITE_SPACE);
                     }
                 }
             }
             else
             {
-                sb.Append(stringArray[i] + " ");
+                sb.Append(stringArray[i]);
+                sb.Append(WHITE_SPACE);
                 if (i + 1 == stringArray.Length - 1)
                 {
-                    sb.Append(stringArray[i + 1] + " ");
+                    sb.Append(stringArray[i + 1]);
+                    sb.Append(WHITE_SPACE);
                 }
             }
         }
 
         Console.WriteLine(sb);
     }
+
     public static void TextProcessorCaseB(string firstStr, string secondStr)
     {
         const string APPEND = "Word for append: \"";
@@ -88,12 +96,12 @@ internal class Program
         else if (secondStr.Contains(INSERT))
         {
             var valueStr = GetNormalString(secondStr);
-            Console.WriteLine(wokringString.Insert(wokringString.IndexOf(' ') + 1,valueStr + ' ').ToArray());
+            Console.WriteLine(wokringString.Insert(wokringString.IndexOf(WHITE_SPACE) + 1,valueStr + WHITE_SPACE).ToArray());
         }
         else if (secondStr.Contains(DELETE))
         {
             var valueStr = GetNormalString(secondStr,true);
-            Console.WriteLine(wokringString.Replace(valueStr,"").ToArray());
+            Console.WriteLine(wokringString.Replace(valueStr,string.Empty).ToArray());
         }
         else if (secondStr.Contains(REPLACE))
         {
@@ -112,7 +120,7 @@ internal class Program
     public static void TextProcessorCaseC(string text = "")
     {
         text = ProcessUserInput(text);
-        Console.WriteLine(text.DeleteAllSelectedChars(' '));
+        Console.WriteLine(text.DeleteAllSelectedChars(WHITE_SPACE));
     }
 
     public static void TextProcessorCaseD(string text)
@@ -122,7 +130,7 @@ internal class Program
     
     public static string ProcessUserInput(string str)
     {
-        if (str == "")
+        if (str == string.Empty)
         {
             var inputSB = new StringBuilder();
             char currentChar = '\0';
@@ -131,15 +139,14 @@ internal class Program
                 currentChar = Convert.ToChar(Console.Read());
                 inputSB.Append(currentChar);
             }
-            while (currentChar != '.');
+            while (currentChar != STOP_SYMBOL);
 
             return inputSB.ToString();
         }
         else
         {
             return str;
-        }
-        
+        }        
     }
 
     public static string GetNormalString(string str, bool workWithSymbol = false)
@@ -153,7 +160,7 @@ internal class Program
     
 }
 
-public static class String
+public static partial class String
 {
     public static int[] IndexOfAll(this string source, char target)
     {
@@ -179,12 +186,9 @@ public static class String
         var sb = new StringBuilder();
         source = source.ToUpper();
 
-        for (int i = 0; i < source.Length; i++)
+        for (int i = 1; i < source.Length; i+=2)
         {
-            if (i % 2 == 1)
-            {
-                sb.Append(source[i]);
-            }
+            sb.Append(source[i]);
         }
 
         return sb.ToString();

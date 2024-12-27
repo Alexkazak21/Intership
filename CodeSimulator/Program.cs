@@ -1,6 +1,6 @@
 ﻿namespace CodeSimulator
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -14,6 +14,7 @@
             var prime1 = IsPrime(6);
             var prime2 = IsPrime(11);
             var prime3 = IsPrime(9);
+            var p = IsPrime(317);
             var prime4 = IsPrime(97);
 
             var someNumbers = new[] { 1, 2, 3, 4, 5, 6, 7 };
@@ -67,7 +68,7 @@
             if (number <= 1) return false; 
             if (number <= 3) return true; 
             
-            if (number % 2 == 0 || number % 3 == 0) return false;
+            if (number % 2 == 0 || number % 3 == 0 ) return false;
             
             for (int i = 5; i * i <= number; i += 6)
             {

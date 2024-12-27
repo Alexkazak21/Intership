@@ -11,13 +11,13 @@
             var t4 = TextRotate("abca", "bcab");
             var t5 = TextRotate("abcd", "cdab");
             var t6 = TextRotate("abc", "acb");
+            var t7 = TextRotate("abccde", "cdeabc"); // need more check for several chars
         }
 
         public static bool TextRotate(string firstStr, string secondStr)
         {
-            string endpartOfFirst = firstStr.Substring(firstStr.IndexOf(secondStr[0]));
-            var startpartOfFirst = firstStr.Replace(endpartOfFirst, "");
-            return secondStr.Equals(endpartOfFirst + startpartOfFirst);
+            if ( firstStr.Length != secondStr.Length) return false;
+            return (firstStr + firstStr).Contains(secondStr);
         }
     }
 }
